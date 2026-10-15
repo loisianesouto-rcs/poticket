@@ -1,0 +1,1361 @@
+/* ==========================================================================
+   POTICKET - DESIGN SYSTEM RESPONSIVO DE ALTA USABILIDADE
+   Padronização de Espaçamento em 24px, Carrossel Fluido com Peek e
+   Rolagem Horizontal de Categorias sem Overflow
+   ========================================================================== */
+
+:root {
+  /* Paleta das Imagens de Referência */
+  --pot-header-dark: #123626;
+  --pot-header-mid: #184532;
+  --pot-header-light: #215941;
+  --pot-header-gradient: linear-gradient(175deg, #0f3022 0%, #174431 50%, #20573f 100%);
+
+  --pot-green-btn: #386953;
+  --pot-green-btn-hover: #2b5341;
+  
+  --pot-orange: #d86529;
+  --pot-orange-hover: #c0551e;
+  --pot-orange-light: #fef4ee;
+  
+  --pot-gold: #f59e0b;
+  --pot-gold-bright: #fbbf24;
+  
+  --pot-bg-page: #faf7f2;
+  --pot-bg-card: #ffffff;
+  --pot-bg-pill: #f4eee2;
+  --pot-border-pill: #e5dacf;
+  --pot-bg-subtle-btn: #f7f3ec;
+  --pot-border-subtle: #ded5c5;
+  
+  --pot-text-dark: #1a241d;
+  --pot-text-subtle: #5f6c63;
+  --pot-text-muted-khaki: #b2a288;
+  
+  --pot-input-bg: #ffffff;
+  --pot-input-border: #e2d8ca;
+  --pot-input-focus: #d86529;
+  
+  /* Espaçamento Padronizado */
+  --space-gutter: 24px;
+  --bottom-bar-height: 68px;
+  --font-base: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-scale: 1rem;
+}
+
+/* Reset Global & Ergonomia de Toque */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--font-scale);
+  background-color: var(--pot-bg-page);
+  color: var(--pot-text-dark);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  padding-bottom: calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Acessibilidade WCAG */
+body.font-large { --font-scale: 1.15rem; }
+body.font-xlarge { --font-scale: 1.3rem; }
+
+body.high-contrast {
+  --pot-bg-page: #000000 !important;
+  --pot-bg-card: #121212 !important;
+  --pot-text-dark: #ffffff !important;
+  --pot-text-subtle: #e0e0e0 !important;
+  --pot-input-border: #ffff00 !important;
+  --pot-green-btn: #ffff00 !important;
+  --pot-orange: #00ffff !important;
+}
+body.high-contrast .btn-pot-green,
+body.high-contrast .btn-pot-orange {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+  font-weight: 900;
+}
+body.dyslexia-mode {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+  letter-spacing: 0.09em;
+  line-height: 1.85;
+}
+
+/* App Container Centralizado & Mobile-First */
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--pot-bg-page);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 40px rgba(18, 54, 38, 0.1);
+  min-width: 0;
+}
+
+/* Transições Fluidas de Telas */
+.view-panel {
+  animation: viewTransition 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  min-width: 0;
+}
+
+@keyframes viewTransition {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   HEADER HERO VERDE DAS IMAGENS
+   ========================================================================== */
+.app-header-hero {
+  background: var(--pot-header-gradient);
+  color: #ffffff;
+  padding: 1.5rem var(--space-gutter) 2.25rem;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 48, 34, 0.16);
+  width: 100%;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.brand-logo-text {
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.brand-logo-text span.dot {
+  color: var(--pot-orange);
+}
+
+.brand-slogan {
+  font-size: 0.68rem;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.brand-slogan strong {
+  color: var(--pot-gold-bright);
+}
+
+.btn-access-top {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.btn-access-top:active {
+  transform: scale(0.92);
+}
+
+.btn-access-top:focus-visible {
+  outline: 3px solid var(--pot-gold-bright);
+}
+
+.search-box-wrap {
+  position: relative;
+  margin-top: 0.85rem;
+}
+
+.search-box-wrap input {
+  width: 100%;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  padding: 0 40px 0 44px;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.search-box-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.search-box-wrap input:focus {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+}
+
+.search-box-wrap .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.15rem;
+}
+
+.search-box-wrap .search-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  padding: 6px;
+  display: none;
+  font-size: 1.1rem;
+}
+
+.city-selector-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.city-selector-bar select {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.city-selector-bar select option {
+  color: var(--pot-text-dark);
+  background: #ffffff;
+}
+
+/* ==========================================================================
+   PÍLULAS DE CATEGORIAS (ROLAGEM HORIZONTAL COM 24PX DE ALINHAMENTO)
+   ========================================================================== */
+.categories-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background: var(--pot-bg-page);
+}
+
+.categories-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1.25rem var(--space-gutter) 0.75rem;
+  width: 100%;
+  min-width: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  background: var(--pot-bg-page);
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--space-gutter);
+}
+
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Espaçador final para que o último item não cole na borda */
+.categories-scroll::after {
+  content: '';
+  flex: 0 0 16px;
+}
+
+.category-pill {
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1.5px solid var(--pot-border-pill);
+  background: var(--pot-bg-pill);
+  color: var(--pot-text-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  min-height: 44px;
+  scroll-snap-align: start;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-pill:active {
+  transform: scale(0.95);
+}
+
+.category-pill.active {
+  background: var(--pot-orange);
+  color: #ffffff;
+  border-color: var(--pot-orange);
+  box-shadow: 0 4px 12px rgba(216, 101, 41, 0.35);
+}
+
+/* Rótulos de Seção (Alinhamento uniforme de 24px) */
+.section-label {
+  padding: 0.65rem var(--space-gutter) 0.5rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  color: var(--pot-text-muted-khaki);
+  width: 100%;
+}
+
+/* ==========================================================================
+   CARROSSEL EM DESTAQUE (75-85% DE LARGURA, PEEK DO 2º CARD, ASPECT-RATIO)
+   ========================================================================== */
+#featuredSection {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.featured-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 var(--space-gutter) 1.25rem;
+  width: 100%;
+  min-width: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-inline: var(--space-gutter);
+}
+
+.featured-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Espaçador final para manter respiro no fim do carrossel */
+.featured-scroll::after {
+  content: '';
+  flex: 0 0 16px;
+}
+
+.featured-card {
+  /* Ocupa ~80% da viewport disponível, descontando o gutter lateral */
+  flex: 0 0 clamp(235px, calc(100vw - 3 * var(--space-gutter)), 340px);
+  width: clamp(235px, calc(100vw - 3 * var(--space-gutter)), 340px);
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border-radius: 26px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  scroll-snap-align: start;
+  box-shadow: 0 6px 20px rgba(18, 54, 38, 0.12);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featured-card:hover {
+  transform: translateY(-3px);
+}
+
+.featured-card:active {
+  transform: scale(0.97);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.featured-card:hover img {
+  transform: scale(1.05);
+}
+
+.featured-card .featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 15%, rgba(18, 48, 34, 0.6) 55%, rgba(12, 34, 24, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 1.15rem 1rem 1rem;
+  color: #ffffff;
+}
+
+.featured-badge {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  background: var(--pot-orange);
+  color: #ffffff;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.featured-title {
+  font-size: clamp(1rem, 4vw, 1.18rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0 0 3px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.featured-meta {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--pot-gold-bright);
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   CARDS DA LISTA VERTICAL (COM PADDING PADRONIZADO EM 24PX)
+   ========================================================================== */
+.event-item-card {
+  background: #ffffff;
+  border: 1.5px solid #ece4d7;
+  border-radius: 18px;
+  padding: 12px;
+  margin: 0 var(--space-gutter) 12px;
+  display: flex;
+  gap: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(18, 54, 38, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.event-item-card:hover {
+  border-color: var(--pot-green-btn);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(18, 54, 38, 0.08);
+}
+
+.event-item-card:active {
+  transform: scale(0.98);
+}
+
+.event-item-thumb {
+  width: 94px;
+  height: 94px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.event-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.event-item-category {
+  font-size: 0.75rem;
+  color: var(--pot-green-btn);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.event-item-title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--pot-text-dark);
+  line-height: 1.25;
+  margin: 2px 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-item-meta {
+  font-size: 0.78rem;
+  color: var(--pot-text-subtle);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.event-item-price {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--pot-orange);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   BOTÕES ERGONÔMICOS
+   ========================================================================== */
+.btn-pot-green {
+  background-color: var(--pot-green-btn);
+  color: #ffffff;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  width: 100%;
+  min-height: 52px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-pot-green:hover {
+  background-color: var(--pot-green-btn-hover);
+  box-shadow: 0 4px 14px rgba(56, 105, 83, 0.3);
+}
+
+.btn-pot-green:active {
+  transform: scale(0.97);
+}
+
+.btn-pot-orange {
+  background-color: var(--pot-orange);
+  color: #ffffff;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  width: 100%;
+  min-height: 52px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-pot-orange:hover {
+  background-color: var(--pot-orange-hover);
+  box-shadow: 0 4px 14px rgba(216, 101, 41, 0.3);
+}
+
+.btn-pot-orange:active {
+  transform: scale(0.97);
+}
+
+.btn-pot-outline {
+  background-color: var(--pot-bg-subtle-btn);
+  color: var(--pot-text-dark);
+  font-weight: 700;
+  padding: 13px 20px;
+  border-radius: 16px;
+  border: 1.5px solid var(--pot-border-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  width: 100%;
+  min-height: 52px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-pot-outline:hover {
+  background-color: #eee7dc;
+}
+
+.btn-pot-outline:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================================================
+   FORMULÁRIOS & CAMPOS
+   ========================================================================== */
+.form-group-custom {
+  margin-bottom: 1.25rem;
+}
+
+.form-label-custom {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #49564d;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.input-icon-wrap {
+  position: relative;
+}
+
+.input-icon-wrap i.prefix-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c978f;
+  font-size: 1.15rem;
+}
+
+.input-icon-wrap input,
+.input-icon-wrap select,
+.input-icon-wrap textarea {
+  width: 100%;
+  height: 52px;
+  border: 1.5px solid var(--pot-input-border);
+  border-radius: 14px;
+  padding: 0 44px 0 44px;
+  font-size: 16px;
+  color: var(--pot-text-dark);
+  background-color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-icon-wrap input:focus {
+  border-color: var(--pot-orange);
+  box-shadow: 0 0 0 3px rgba(216, 101, 41, 0.2);
+}
+
+.input-icon-wrap .suffix-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8c978f;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* ==========================================================================
+   STEPPER DE CADASTRO
+   ========================================================================== */
+.stepper-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.step-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+  background: var(--pot-bg-pill);
+  color: var(--pot-text-subtle);
+}
+
+.step-circle.active {
+  background: var(--pot-orange);
+  color: #ffffff;
+}
+
+.step-circle.done {
+  background: var(--pot-green-btn);
+  color: #ffffff;
+}
+
+.step-line {
+  width: 44px;
+  height: 2px;
+  background: var(--pot-border-pill);
+}
+
+.step-line.active {
+  background: var(--pot-orange);
+}
+
+/* Card Resumo do Usuário */
+.user-summary-card {
+  background: #edf6f1;
+  border: 1.5px solid #d5e9dd;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.user-summary-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--pot-orange);
+  color: #ffffff;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* ==========================================================================
+   BARRA INFERIOR FIXA (BOTTOM NAV)
+   ========================================================================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: #ffffff;
+  border-top: 1.5px solid #ece4d7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1040;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 -4px 18px rgba(18, 54, 38, 0.05);
+}
+
+.nav-item-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #8b978f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 5px 8px;
+  min-width: 58px;
+  min-height: 48px;
+  transition: all 0.16s ease;
+}
+
+.nav-item-btn:active {
+  transform: scale(0.92);
+}
+
+.nav-item-btn i {
+  font-size: 1.35rem;
+  margin-bottom: 2px;
+}
+
+.nav-item-btn.active {
+  color: var(--pot-orange);
+}
+
+/* ==========================================================================
+   BARRA FIXA DE COMPRA (STICKY BUY BAR - SEM SOBREPOSIÇÃO)
+   ========================================================================== */
+.event-details-view {
+  padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.sticky-buy-bar {
+  position: fixed;
+  bottom: calc(var(--bottom-bar-height) + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-top: 1.5px solid #ece4d7;
+  padding: 12px var(--space-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -6px 22px rgba(18, 54, 38, 0.09);
+  z-index: 1035;
+}
+
+/* ==========================================================================
+   IDENTIDADE VISUAL DA LOGO (CACTO & SOL) - CONFORME REFERÊNCIAS
+   ========================================================================== */
+.splash-brand-logo,
+.desktop-brand,
+.brand-logo-text {
+  font-family: var(--font-base);
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.85rem;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.logo-pot {
+  color: #123626;
+  font-weight: 900;
+}
+
+.desktop-navbar .logo-pot,
+.splash-brand-logo .logo-pot {
+  color: #123626;
+}
+
+.app-header-hero .logo-pot {
+  color: #ffffff;
+}
+
+.logo-cactus-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 26px;
+  margin: 0 1px;
+}
+
+.logo-sun {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #f59e0b;
+  top: 1px;
+  z-index: 1;
+}
+
+.logo-cactus-icon {
+  position: relative;
+  z-index: 2;
+  color: #1e543b;
+  font-size: 1.35rem;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.logo-cket {
+  color: var(--pot-orange);
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   SPLASH SCREEN DE ABERTURA (PUSH - REFERÊNCIA 1)
+   ========================================================================== */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #faf7f2;
+  color: var(--pot-text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.5rem 1.5rem 3rem;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+
+.splash-top-ornaments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.splash-center-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.8rem 2.2rem;
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 10px 32px rgba(18, 54, 38, 0.05);
+  border: 1.5px solid rgba(229, 218, 207, 0.5);
+  max-width: 380px;
+  width: 100%;
+}
+
+.splash-center-card .splash-brand-logo {
+  font-size: 2.5rem;
+}
+
+.splash-regional-motifs {
+  margin: 1.4rem 0 1.2rem;
+}
+
+.splash-palette-bar {
+  display: flex;
+  gap: 4px;
+  height: 6px;
+  width: 130px;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.splash-palette-bar span {
+  flex: 1;
+  height: 100%;
+}
+
+.splash-dots-indicator {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.splash-dots-indicator .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d8cdbf;
+  transition: all 0.2s ease;
+}
+
+.splash-dots-indicator .dot.active {
+  background: #386953;
+  width: 10px;
+  height: 10px;
+}
+
+/* ==========================================================================
+   NAVBAR SUPERIOR DESKTOP (REFERÊNCIA 3)
+   ========================================================================== */
+.desktop-navbar {
+  display: none;
+  background: #ffffff;
+  border-bottom: 1.5px solid #ece4d7;
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  width: 100%;
+}
+
+.desktop-navbar-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.95rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.desktop-brand {
+  cursor: pointer;
+}
+
+.desktop-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.desktop-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  border: 1.5px solid #e5dacf;
+  background: #fbf8f3;
+  color: var(--pot-text-dark);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.desktop-nav-btn:hover {
+  background: #f2ebe0;
+  border-color: #d8cca0;
+  transform: translateY(-1px);
+}
+
+.desktop-nav-btn.active {
+  border-color: var(--pot-orange);
+  color: var(--pot-orange);
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(216, 101, 41, 0.12);
+}
+
+.desktop-nav-btn.btn-highlight {
+  background: var(--pot-orange);
+  color: #ffffff;
+  border-color: var(--pot-orange);
+  box-shadow: 0 4px 14px rgba(216, 101, 41, 0.25);
+}
+
+.desktop-nav-btn.btn-highlight:hover {
+  background: var(--pot-orange-hover);
+  border-color: var(--pot-orange-hover);
+}
+
+/* ==========================================================================
+   BOTÃO FLUTUANTE UNIVERSAL DE AJUDA & ACESSIBILIDADE (?) - REFERÊNCIAS 1, 2 E 3
+   ========================================================================== */
+.btn-help-floating {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #ded5c5;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1045;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-help-floating:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.13);
+  border-color: var(--pot-orange);
+}
+
+.btn-help-floating:active {
+  transform: scale(0.95);
+}
+
+.help-question-mark {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #5f6c63;
+  line-height: 1;
+}
+
+/* Drawer Acessibilidade */
+.accessibility-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 1.5rem var(--space-gutter) calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.2);
+  z-index: 1060;
+  transform: translateY(100%);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accessibility-drawer.open {
+  transform: translateY(0);
+}
+
+.access-btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.access-control-btn {
+  background: var(--pot-bg-subtle-btn);
+  border: 1px solid var(--pot-border-subtle);
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE: DESKTOP / WEB AMPLO (≥ 768px e ≥ 992px)
+   Site expande para toda a tela sem limitação de 480px (Referências 2 e 3)
+   ========================================================================== */
+@media (min-width: 768px) {
+  :root {
+    --space-gutter: 36px;
+  }
+
+  /* Exibe a Navbar Desktop no topo */
+  .desktop-navbar {
+    display: block;
+  }
+
+  /* Esconde a barra inferior de celular */
+  .bottom-nav {
+    display: none !important;
+  }
+
+  /* Body e container expandem 100% no desktop */
+  body {
+    background-color: var(--pot-bg-page) !important;
+    padding-bottom: 0 !important;
+  }
+
+  .app-container {
+    max-width: 100% !important;
+    box-shadow: none !important;
+    background-color: var(--pot-bg-page) !important;
+  }
+
+  /* Header Hero Verde no Desktop: Cantos retos e largura ampla */
+  .app-header-hero {
+    border-radius: 0 !important;
+    padding: 2.2rem 2rem 2.8rem !important;
+    box-shadow: 0 4px 20px rgba(15, 48, 34, 0.08) !important;
+  }
+
+  .app-header-hero-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Oculta logo repetida dentro do hero verde pois já está na navbar branca superior */
+  .app-header-hero .brand-badge > div:first-child {
+    display: none !important;
+  }
+
+  .app-header-hero .brand-badge {
+    margin-bottom: 0.5rem;
+    justify-content: flex-end !important;
+  }
+
+  .app-header-hero h1 {
+    font-size: 2.3rem !important;
+    margin-top: 0 !important;
+    letter-spacing: -0.5px;
+  }
+
+  .search-box-wrap {
+    max-width: 680px;
+  }
+
+  /* Container de conteúdo amplo */
+  .desktop-content-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 var(--space-gutter);
+  }
+
+  /* Categorias pílulas centralizadas e sem corte */
+  .categories-wrapper {
+    overflow: visible !important;
+  }
+
+  .categories-scroll {
+    max-width: 1320px;
+    margin: 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: visible !important;
+    padding: 1.5rem 0 1rem !important;
+    gap: 12px;
+  }
+
+  .categories-scroll::after {
+    display: none !important;
+  }
+
+  /* Seções de eventos centralizadas */
+  #featuredSection,
+  #allEventsSection {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    padding: 0.85rem 0 0.65rem !important;
+    font-size: 0.82rem;
+    letter-spacing: 2px;
+  }
+
+  /* Seção Em Destaque em Grid de 3 colunas (Referência 3) */
+  #featuredSection {
+    overflow: visible !important;
+  }
+
+  .featured-scroll {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    overflow-x: visible !important;
+    padding: 0 0 2rem 0 !important;
+  }
+
+  .featured-scroll::after {
+    display: none !important;
+  }
+
+  .featured-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 24px rgba(18, 54, 38, 0.1) !important;
+  }
+
+  /* Seção Todos os Eventos em Grid de 3 colunas (Referência 3) */
+  #allEventsList {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    padding-bottom: 3.5rem !important;
+  }
+
+  .event-item-card {
+    margin: 0 !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 12px rgba(18, 54, 38, 0.05) !important;
+  }
+
+  .accessibility-drawer {
+    max-width: 520px;
+  }
+}
+
+/* ==========================================================================
+   TELA DE LOGIN SPLIT-SCREEN NO DESKTOP (REFERÊNCIA 2)
+   ========================================================================== */
+@media (min-width: 992px) {
+  :root {
+    --space-gutter: 48px;
+  }
+
+  /* Split screen da tela de login */
+  #view-login-step1.split-login-active {
+    display: flex !important;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: row;
+    position: relative;
+    z-index: 10;
+  }
+
+  #view-login-step1.split-login-active .app-header-hero {
+    flex: 0 0 45%;
+    min-height: 100vh;
+    border-radius: 0 !important;
+    padding: 4rem 3.5rem !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--pot-header-gradient) !important;
+  }
+
+  #view-login-step1.split-login-active .app-header-hero .brand-badge > div:first-child {
+    display: block !important;
+  }
+
+  #view-login-step1.split-login-active .app-header-hero .brand-badge {
+    justify-content: space-between !important;
+    width: 100%;
+    margin-bottom: auto;
+  }
+
+  #view-login-step1.split-login-active .app-header-hero h2 {
+    font-size: 2.2rem !important;
+    font-weight: 900;
+  }
+
+  #view-login-step1.split-login-active .app-header-hero p {
+    font-size: 1.05rem !important;
+    opacity: 0.9;
+  }
+
+  /* Lado direito: fundo creme e formulário centralizado */
+  #view-login-step1.split-login-active .login-form-side {
+    flex: 1;
+    min-height: 100vh;
+    background: var(--pot-bg-page) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2.5rem !important;
+  }
+
+  #view-login-step1.split-login-active .login-form-side form,
+  #view-login-step1.split-login-active .login-form-side > div {
+    max-width: 440px;
+    width: 100%;
+  }
+
+  /* Oculta botões de redes sociais no login desktop conforme Imagem 2 */
+  #view-login-step1.split-login-active .login-extra-social {
+    display: none !important;
+  }
+}
+

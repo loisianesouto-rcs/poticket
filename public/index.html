@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>POTicket - Seu ingresso, seu evento, seu lugar</title>
+  <meta name="description" content="Plataforma moderna para compra e venda de ingressos em geral: shows, congressos, corridas e festas.">
+  <meta name="theme-color" content="#16422f">
+  
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3898/3898082.png">
+
+  <!-- Fontes & Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Bootstrap 5.3.3 CSS Core -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Design System com as Cores Originais dos Mockups -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       SPLASH SCREEN DE ABERTURA COM IDENTIDADE ORIGINAL (PUSH / REFERÊNCIA 1)
+       ===================================================================== -->
+  <div id="splashScreen" class="splash-screen" role="dialog" aria-modal="true" aria-label="Carregando POTicket">
+    <!-- Ornamentos regionais superiores -->
+    <div class="splash-top-ornaments">
+      <svg width="220" height="24" viewBox="0 0 220 24" fill="none">
+        <path d="M10 14 Q25 6 40 14 T70 14" stroke="#7e968b" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M95 16 Q110 8 125 16 T140 16" stroke="#cbb28b" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <!-- Sol/Estrela -->
+        <g transform="translate(180, 12)">
+          <line x1="-7" y1="0" x2="7" y2="0" stroke="#d58654" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+          <line x1="0" y1="-7" x2="0" y2="7" stroke="#d58654" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+          <line x1="-5" y1="-5" x2="5" y2="5" stroke="#d58654" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+          <line x1="-5" y1="5" x2="5" y2="-5" stroke="#d58654" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Card Central com Logotipo, Cacto, Sol e Grafismos Nordestinos -->
+    <div class="splash-center-card">
+      <div class="splash-brand-logo">
+        <span class="logo-pot">POT</span><span class="logo-cactus-wrap"><span class="logo-sun"></span><i class="bi bi-flower1 logo-cactus-icon"></i></span><span class="logo-cket">cket</span>
+      </div>
+      <div class="brand-slogan" style="font-size: 0.8rem; letter-spacing: 2.2px; margin-top: 10px; color: var(--pot-text-dark); font-weight: 800;">
+        SEU INGRESSO. <strong style="color: var(--pot-orange);">SEU EVENTO.</strong> SEU LUGAR.
+      </div>
+
+      <!-- Grafismos: Ondas, Dunas, Mandacaru e Ponte Estaiada -->
+      <div class="splash-regional-motifs">
+        <svg width="200" height="26" viewBox="0 0 200 26" fill="none">
+          <!-- Ondas -->
+          <path d="M16 14 Q23 9 30 14 T44 14" stroke="#16422f" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M16 18 Q23 13 30 18 T44 18" stroke="#16422f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <!-- Duna -->
+          <path d="M66 18 Q80 8 94 18" stroke="#d86529" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <!-- Estrela Nordestina -->
+          <g transform="translate(120, 14)">
+            <line x1="-6" y1="0" x2="6" y2="0" stroke="#f59e0b" stroke-width="2"/>
+            <line x1="0" y1="-6" x2="0" y2="6" stroke="#f59e0b" stroke-width="2"/>
+            <line x1="-4" y1="-4" x2="4" y2="4" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="-4" y1="4" x2="4" y2="-4" stroke="#f59e0b" stroke-width="1.5"/>
+          </g>
+          <!-- Ponte Estaiada -->
+          <path d="M152 20 L166 6 L180 20" stroke="#184532" stroke-width="1.8" fill="none"/>
+          <line x1="166" y1="6" x2="166" y2="20" stroke="#184532" stroke-width="2"/>
+          <line x1="166" y1="9" x2="157" y2="20" stroke="#184532" stroke-width="1.2"/>
+          <line x1="166" y1="9" x2="175" y2="20" stroke="#184532" stroke-width="1.2"/>
+        </svg>
+      </div>
+
+      <!-- Barra de Cores Institucionais -->
+      <div class="splash-palette-bar">
+        <span style="background: #123626;"></span>
+        <span style="background: #184532;"></span>
+        <span style="background: #386953;"></span>
+        <span style="background: #d86529;"></span>
+        <span style="background: #f59e0b;"></span>
+      </div>
+    </div>
+
+    <!-- Indicador de Paginação/Slide da Referência 1 -->
+    <div class="splash-dots-indicator">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       NAVBAR DESKTOP (EXCLUSIVA PARA TELAS MAIORES, CONFORME A REFERÊNCIA 3)
+       ===================================================================== -->
+  <header class="desktop-navbar" id="desktopNavbar" aria-label="Navegação Principal Desktop">
+    <div class="desktop-navbar-inner">
+      <div class="desktop-brand" onclick="App.switchView('home')" role="button" tabindex="0" aria-label="POTicket Home">
+        <span class="logo-pot">POT</span><span class="logo-cactus-wrap"><span class="logo-sun"></span><i class="bi bi-flower1 logo-cactus-icon"></i></span><span class="logo-cket">cket</span>
+      </div>
+      
+      <nav class="desktop-nav-menu" aria-label="Menu principal">
+        <button class="desktop-nav-btn active" data-view="home" onclick="App.switchView('home')">
+          <i class="bi bi-ticket-perforated"></i>
+          <span>Eventos</span>
+        </button>
+        <button class="desktop-nav-btn" data-view="my-tickets" onclick="App.switchView('my-tickets')">
+          <i class="bi bi-qr-code-scan"></i>
+          <span>Meus ingressos</span>
+        </button>
+        <button class="desktop-nav-btn btn-highlight" data-view="create-event" onclick="App.switchView('create-event')">
+          <i class="bi bi-pencil-square"></i>
+          <span>Criar evento</span>
+        </button>
+        <button class="desktop-nav-btn" data-view="profile" onclick="App.switchView('profile')">
+          <i class="bi bi-person"></i>
+          <span>Perfil</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTAINER PRINCIPAL -->
+  <div class="app-container" id="appMainContainer">
+
+    <!-- ===================================================================
+         VIEW 1: LOGIN ETAPA 1 (DIGITAÇÃO DO CPF)
+         =================================================================== -->
+    <section id="view-login-step1" class="view-panel" style="display: none;">
+      <div class="app-header-hero" style="border-bottom-left-radius: 36px; border-bottom-right-radius: 36px; padding-bottom: 2.8rem;">
+        <div class="brand-badge">
+          <div>
+            <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+            <div class="brand-slogan">SEU INGRESSO. <strong>SEU EVENTO.</strong> SEU LUGAR.</div>
+          </div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Menu de Acessibilidade">
+            <i class="bi bi-universal-access" style="font-size: 1.25rem;"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.7rem; font-weight: 900; margin-top: 1.5rem; margin-bottom: 4px;">Bem-vindo de volta</h2>
+        <p style="font-size: 0.92rem; color: rgba(255, 255, 255, 0.85); margin: 0;">Acesse sua conta usando seu CPF</p>
+      </div>
+
+      <div class="login-form-side" style="padding: 2rem var(--space-gutter);">
+        <form onsubmit="event.preventDefault(); App.handleLoginCpfSubmit(document.getElementById('loginCpfInput').value);">
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="loginCpfInput">CPF</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-person-vcard prefix-icon"></i>
+              <input type="tel" id="loginCpfInput" placeholder="000.000.000-00" maxlength="14" required 
+                     oninput="this.value = App.formatCpf(this.value)">
+            </div>
+            <small style="color: var(--pot-text-muted); font-size: 0.82rem; display: block; margin-top: 6px;">
+              Use o CPF cadastrado na sua conta POTicket.
+            </small>
+          </div>
+
+          <button type="submit" class="btn-pot-green mt-4">
+            Continuar
+          </button>
+        </form>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 1.25rem;">
+          <div class="login-extra-social" style="display: flex; flex-direction: column; gap: 10px;">
+            <button type="button" class="btn-pot-outline" onclick="App.loginWithBiometrics()">
+              <i class="bi bi-fingerprint" style="font-size: 1.25rem; color: var(--pot-green-primary);"></i> Entrar com Biometria
+            </button>
+            
+            <button type="button" class="btn-pot-outline" onclick="App.loginWithGoogle()">
+              <i class="bi bi-google" style="color: #ea4335;"></i> Entrar com a conta Google
+            </button>
+          </div>
+
+          <button type="button" class="btn-pot-outline" onclick="App.switchView('home')">
+            Explorar sem fazer login
+          </button>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem; font-size: 0.94rem; color: var(--pot-text-muted);">
+          Não tem conta? 
+          <a href="javascript:void(0)" onclick="App.switchView('register-step1')" style="color: var(--pot-orange); font-weight: 800; text-decoration: none;">
+            Criar agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 2: LOGIN ETAPA 2 (DIGITAÇÃO DA SENHA)
+         =================================================================== -->
+    <section id="view-login-step2" class="view-panel" style="display: none;">
+      <div class="app-header-hero" style="border-bottom-left-radius: 36px; border-bottom-right-radius: 36px; padding-bottom: 2.8rem;">
+        <div class="brand-badge">
+          <button class="btn-access-top" onclick="App.switchView('login-step1')" aria-label="Voltar para CPF">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade">
+            <i class="bi bi-universal-access"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.7rem; font-weight: 900; margin-top: 1.5rem; margin-bottom: 4px;">Digite sua senha</h2>
+        <p id="loginCpfPreview" style="font-size: 0.92rem; color: rgba(255, 255, 255, 0.85); margin: 0;">Entrando com seu CPF</p>
+      </div>
+
+      <div style="padding: 2rem var(--space-gutter);">
+        <form onsubmit="event.preventDefault(); App.handleLoginPasswordSubmit(document.getElementById('loginPasswordInput').value);">
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="loginPasswordInput">Senha</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-lock prefix-icon"></i>
+              <input type="password" id="loginPasswordInput" placeholder="••••••••" required>
+              <button type="button" class="suffix-btn" onclick="const f=document.getElementById('loginPasswordInput'); f.type = f.type==='password'?'text':'password';" aria-label="Alternar visibilidade de senha">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div style="text-align: right; margin-top: 8px;">
+              <a href="javascript:void(0)" onclick="App.switchView('forgot-password')" style="font-size: 0.86rem; color: var(--pot-orange); font-weight: 800; text-decoration: none;">
+                Esqueceu a senha?
+              </a>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pot-green mt-4">
+            Entrar
+          </button>
+
+          <button type="button" class="btn-pot-outline mt-3" onclick="App.switchView('home')">
+            Explorar sem fazer login
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; font-size: 0.94rem; color: var(--pot-text-muted);">
+          Não tem conta? 
+          <a href="javascript:void(0)" onclick="App.switchView('register-step1')" style="color: var(--pot-orange); font-weight: 800; text-decoration: none;">
+            Criar agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 3: ESQUECEU A SENHA
+         =================================================================== -->
+    <section id="view-forgot-password" class="view-panel" style="display: none;">
+      <div class="app-header-hero">
+        <div class="brand-badge">
+          <button class="btn-access-top" onclick="App.switchView('login-step2')" aria-label="Voltar">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade">
+            <i class="bi bi-universal-access"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin: 1rem 0 4px;">Recuperar Acesso</h2>
+        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.85); margin: 0;">Enviaremos um link de redefinição para o seu e-mail cadastrado.</p>
+      </div>
+
+      <div style="padding: 2rem var(--space-gutter);">
+        <form onsubmit="event.preventDefault(); App.sendPasswordResetLink(document.getElementById('forgotEmailInput').value);">
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="forgotEmailInput">E-mail Cadastrado</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-envelope-at prefix-icon"></i>
+              <input type="email" id="forgotEmailInput" placeholder="seu@email.com" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pot-green mt-4">
+            <i class="bi bi-send-fill"></i> Enviar Link de Recuperação
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 4: CADASTRO PASSO 1 (DADOS PESSOAIS + VALIDAÇÃO 18+ & CEP)
+         =================================================================== -->
+    <section id="view-register-step1" class="view-panel" style="display: none;">
+      <div class="app-header-hero">
+        <div class="brand-badge">
+          <button class="btn-access-top" onclick="App.switchView('login-step1')" aria-label="Voltar">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade">
+            <i class="bi bi-universal-access"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin: 1rem 0 4px;">Criar conta</h2>
+        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.85); margin: 0;">Junte-se à comunidade POTicket</p>
+      </div>
+
+      <div style="padding: 1.5rem var(--space-gutter);">
+        <!-- Stepper Original -->
+        <div class="stepper-nav">
+          <div class="step-circle active">1</div>
+          <span style="font-size: 0.85rem; font-weight: 800; color: var(--pot-orange);">Dados pessoais</span>
+          <div class="step-line"></div>
+          <div class="step-circle">2</div>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--pot-text-muted);">Acesso</span>
+        </div>
+
+        <form id="registerStep1Form" onsubmit="event.preventDefault(); App.handleRegisterStep1();">
+          <div class="form-group-custom">
+            <label class="form-label-custom">Nome Completo</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-person prefix-icon"></i>
+              <input type="text" id="reg-name" placeholder="Ex: Maria Oliveira" required>
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">CPF</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-person-vcard prefix-icon"></i>
+              <input type="tel" id="reg-cpf" placeholder="000.000.000-00" maxlength="14" required 
+                     oninput="this.value = App.formatCpf(this.value)">
+            </div>
+          </div>
+
+          <!-- DATA DE NASCIMENTO (REGRA CRÍTICA: MAIOR DE 18 ANOS) -->
+          <div class="form-group-custom">
+            <label class="form-label-custom">Data de Nascimento</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-calendar-event prefix-icon"></i>
+              <input type="date" id="reg-birthdate" required>
+            </div>
+            <small style="color: var(--pot-text-muted); font-size: 0.8rem; display: block; margin-top: 4px;">
+              * Obrigatório ter 18 anos ou mais para compra de ingressos.
+            </small>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">E-mail</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-envelope prefix-icon"></i>
+              <input type="email" id="reg-email" placeholder="seu@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Telefone (Opcional)</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-telephone prefix-icon"></i>
+              <input type="tel" id="reg-phone" placeholder="(84) 99999-9999">
+            </div>
+          </div>
+
+          <!-- ENDEREÇO COM BUSCA AUTOMÁTICA DE CEP (ViaCEP) -->
+          <div class="form-group-custom">
+            <label class="form-label-custom">CEP (Preenche endereço automaticamente)</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-geo-alt prefix-icon"></i>
+              <input type="tel" id="reg-cep" placeholder="00000-000" maxlength="9" required
+                     oninput="this.value = App.formatCep(this.value); if(this.value.length === 9) App.lookupCep(this.value, 'reg');">
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Logradouro / Rua</label>
+            <input type="text" id="reg-street" class="form-control" placeholder="Avenida / Rua" required readonly style="background: #f8fafc;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Número</label>
+              <input type="text" id="reg-number" class="form-control" placeholder="Ex: 120" required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Complemento</label>
+              <input type="text" id="reg-complement" class="form-control" placeholder="Apto, Sala...">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Cidade</label>
+              <input type="text" id="reg-city" class="form-control" required readonly style="background: #f8fafc;">
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">UF</label>
+              <input type="text" id="reg-state" class="form-control" required readonly style="background: #f8fafc;">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-pot-orange mt-3">
+            Continuar <i class="bi bi-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 5: CADASTRO PASSO 2 (SENHA E CONFIRMAÇÃO)
+         =================================================================== -->
+    <section id="view-register-step2" class="view-panel" style="display: none;">
+      <div class="app-header-hero">
+        <div class="brand-badge">
+          <button class="btn-access-top" onclick="App.switchView('register-step1')" aria-label="Voltar">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade">
+            <i class="bi bi-universal-access"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin: 1rem 0 4px;">Criar conta</h2>
+        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.85); margin: 0;">Defina sua senha de acesso</p>
+      </div>
+
+      <div style="padding: 1.5rem var(--space-gutter);">
+        <div class="stepper-nav">
+          <div class="step-circle done"><i class="bi bi-check"></i></div>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--pot-green-primary);">Dados pessoais</span>
+          <div class="step-line active"></div>
+          <div class="step-circle active">2</div>
+          <span style="font-size: 0.85rem; font-weight: 800; color: var(--pot-orange);">Acesso</span>
+        </div>
+
+        <!-- Resumo do Usuário com Estilo Original -->
+        <div style="background: #eaf5f0; border: 1.5px solid #c9e4d6; border-radius: 16px; padding: 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;">
+          <div id="regSummaryAvatar" style="width: 46px; height: 46px; border-radius: 50%; background: var(--pot-orange); color: #fff; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+            M
+          </div>
+          <div>
+            <div id="regSummaryName" style="font-weight: 800; font-size: 0.98rem; color: var(--pot-text-dark);">Maria Oliveira</div>
+            <div id="regSummaryEmail" style="font-size: 0.84rem; color: var(--pot-text-muted);">maria@email.com</div>
+          </div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); App.handleRegisterStep2();">
+          <div class="form-group-custom">
+            <label class="form-label-custom">Senha</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-lock prefix-icon"></i>
+              <input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres" required minlength="6">
+              <button type="button" class="suffix-btn" onclick="const f=document.getElementById('reg-pass'); f.type = f.type==='password'?'text':'password';" aria-label="Mostrar senha">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Confirmar Senha</label>
+            <div class="input-icon-wrap">
+              <i class="bi bi-lock-fill prefix-icon"></i>
+              <input type="password" id="reg-pass-confirm" placeholder="Repita a senha" required minlength="6">
+              <button type="button" class="suffix-btn" onclick="const f=document.getElementById('reg-pass-confirm'); f.type = f.type==='password'?'text':'password';" aria-label="Mostrar senha">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <p style="font-size: 0.84rem; color: var(--pot-text-muted); line-height: 1.5; margin: 1.25rem 0;">
+            Ao criar uma conta você concorda com os <a href="javascript:void(0)" style="color: var(--pot-orange); font-weight: 700;">Termos de Uso</a> e a <a href="javascript:void(0)" style="color: var(--pot-orange); font-weight: 700;">Política de Privacidade</a>.
+          </p>
+
+          <button type="submit" class="btn-pot-orange">
+            Criar conta
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 6: HOME / CATÁLOGO PRINCIPAL (O QUE VAI ROLAR? 🌵)
+         =================================================================== -->
+    <section id="view-home" class="view-panel">
+      <!-- Topo com Identidade Verde Floresta e Busca -->
+      <div class="app-header-hero">
+        <div class="app-header-hero-content">
+          <div class="brand-badge">
+            <div>
+              <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+              <div class="brand-slogan">SEU INGRESSO. <strong>SEU EVENTO.</strong> SEU LUGAR.</div>
+            </div>
+            <!-- Acessibilidade no topo; indicativo de perfil do topo REMOVIDO conforme solicitado -->
+            <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade universal">
+              <i class="bi bi-universal-access" style="font-size: 1.25rem;"></i>
+            </button>
+          </div>
+
+          <h1 style="font-size: 1.7rem; font-weight: 900; margin: 0.5rem 0 0.85rem;">
+            O que vai rolar? 🌵
+          </h1>
+
+          <!-- Busca por texto -->
+          <div class="search-box-wrap">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" id="catalogSearch" placeholder="Buscar eventos, artistas..." aria-label="Buscar eventos">
+            <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Limpar busca">
+              <i class="bi bi-x-circle-fill"></i>
+            </button>
+          </div>
+
+          <!-- Filtro por Cidade -->
+          <div class="city-selector-bar">
+            <i class="bi bi-geo-alt-fill text-warning"></i>
+            <span>Todas</span>
+            <select id="citySelect" aria-label="Filtrar por cidade" style="color: #ffffff;">
+              <option value="all">Todas as Cidades</option>
+              <option value="Aracaju">Aracaju</option>
+              <option value="Fortaleza">Fortaleza</option>
+              <option value="Feira de Santana">Feira de Santana</option>
+              <option value="Natal">Natal</option>
+              <option value="São Paulo">São Paulo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Container de Conteúdo Amplo no Desktop (Referência 3) -->
+      <div class="desktop-content-container">
+        <!-- Filtro de Categorias em Pílulas (Exatas da imagem com rolagem nativa) -->
+        <div class="categories-wrapper">
+          <div class="categories-scroll" id="categoriesScroll" role="tablist" aria-label="Categorias de eventos">
+            <button class="category-pill active" data-category="all" onclick="App.setCategory('all', this)" role="tab">
+              ✦ Todos
+            </button>
+            <button class="category-pill" data-category="shows" onclick="App.setCategory('shows', this)" role="tab">
+              🎵 Shows
+            </button>
+            <button class="category-pill" data-category="congressos" onclick="App.setCategory('congressos', this)" role="tab">
+              🎤 Congressos
+            </button>
+            <button class="category-pill" data-category="corridas" onclick="App.setCategory('corridas', this)" role="tab">
+              🏃 Corridas
+            </button>
+            <button class="category-pill" data-category="festas" onclick="App.setCategory('festas', this)" role="tab">
+              🎉 Festas
+            </button>
+          </div>
+        </div>
+
+        <!-- Seção EM DESTAQUE (Cards Horizontais) -->
+        <div id="featuredSection" style="margin-top: 0.5rem;">
+          <div class="section-label">Em Destaque</div>
+          <div class="featured-scroll" id="featuredList">
+            <!-- Renderizado dinamicamente via App.renderCatalog() -->
+          </div>
+        </div>
+
+        <!-- Seção TODOS OS EVENTOS (Lista Vertical / Grid Desktop) -->
+        <div id="allEventsSection" style="margin-top: 0.5rem;">
+          <div class="section-label">Todos os Eventos</div>
+          <div id="allEventsList">
+            <!-- Renderizado dinamicamente via App.renderCatalog() -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: DETALHES DO EVENTO & COMPRA (BOTÃO COMPRAR TOTALMENTE ACESSÍVEL ACIMA DA BARRA INFERIOR) -->
+    <section id="view-event-details" class="view-panel" style="display: none;"></section>
+
+    <!-- VIEW 8: CHECKOUT & PIX COM QR CODE -->
+    <section id="view-checkout" class="view-panel" style="display: none;"></section>
+
+    <!-- VIEW 9: MEUS INGRESSOS -->
+    <section id="view-my-tickets" class="view-panel" style="display: none;">
+      <div class="app-header-hero">
+        <div class="brand-badge">
+          <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade">
+            <i class="bi bi-universal-access"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin: 0.5rem 0 0;">Meus Ingressos 🎫</h2>
+        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.85);">Apresente o QR Code na entrada do evento</p>
+      </div>
+
+      <div style="padding: 1.25rem var(--space-gutter) 100px;" id="myTicketsList"></div>
+    </section>
+
+    <!-- VIEW 10: PERFIL DO USUÁRIO & LOGOUT -->
+    <section id="view-profile" class="view-panel" style="display: none;"></section>
+
+    <!-- VIEW 11: MÓDULO DO PRODUTOR (CRIAR EVENTO E TORNAR PÚBLICO) -->
+    <section id="view-create-event" class="view-panel" style="display: none;">
+      <div class="app-header-hero">
+        <div class="brand-badge">
+          <button class="btn-access-top" onclick="App.switchView('home')" aria-label="Voltar">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <div class="brand-logo-text">POT<span class="dot">icket</span></div>
+          <button class="btn-access-top" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade">
+            <i class="bi bi-universal-access"></i>
+          </button>
+        </div>
+        <h2 style="font-size: 1.55rem; font-weight: 900; margin: 1rem 0 4px;">Cadastrar Novo Evento</h2>
+        <p style="font-size: 0.88rem; color: rgba(255,255,255,0.85);">Torne seu evento público para venda imediata</p>
+      </div>
+
+      <div style="padding: 1.5rem var(--space-gutter) 110px;">
+        <form onsubmit="event.preventDefault(); App.handleCreateEventForm();">
+          <div class="form-group-custom">
+            <label class="form-label-custom">Título do Evento</label>
+            <input type="text" id="event-title" class="form-control" placeholder="Ex: Festival de Verão 2026" required>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Categoria</label>
+            <select id="event-category" class="form-select" required>
+              <option value="shows">Shows</option>
+              <option value="congressos">Congressos</option>
+              <option value="corridas">Corridas</option>
+              <option value="festas">Festas</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Data</label>
+              <input type="date" id="event-date" class="form-control" required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Hora</label>
+              <input type="time" id="event-time" class="form-control" value="20:00" required>
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Local / Nome do Espaço</label>
+            <input type="text" id="event-venue" class="form-control" placeholder="Ex: Arena das Dunas" required>
+          </div>
+
+          <!-- CEP do Evento com Busca Automática -->
+          <div class="form-group-custom">
+            <label class="form-label-custom">CEP do Local</label>
+            <input type="tel" id="event-cep" class="form-control" placeholder="00000-000" maxlength="9" required
+                   oninput="this.value = App.formatCep(this.value); if(this.value.length === 9) App.lookupCep(this.value, 'event');">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Cidade</label>
+              <input type="text" id="event-city" class="form-control" required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">UF</label>
+              <input type="text" id="event-state" class="form-control" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">Preço Ingresso (R$)</label>
+              <input type="number" id="event-price" class="form-control" placeholder="100.00" step="0.01" required>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">Qtd. Ingressos</label>
+              <input type="number" id="event-qty" class="form-control" placeholder="200" required>
+            </div>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Chave PIX para Recebimento</label>
+            <input type="text" id="event-pix" class="form-control" placeholder="CPF, CNPJ, E-mail ou Aleatória" required>
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">URL da Imagem de Capa</label>
+            <input type="url" id="event-img" class="form-control" placeholder="https://..." value="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">Descrição Completa</label>
+            <textarea id="event-desc" class="form-control" rows="3" placeholder="Detalhes das atrações, regras, classificação indicativa..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-pot-green mt-3">
+            <i class="bi bi-cloud-arrow-up-fill"></i> Publicar Evento Agora
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         BARRA DE NAVEGAÇÃO INFERIOR FIXA (COM INGRESSOS & CRIAR EVENTO)
+         =================================================================== -->
+    <nav class="bottom-nav" id="bottomNav" aria-label="Navegação Principal">
+      <button class="nav-item-btn active" data-view="home" onclick="App.switchView('home')" aria-label="Eventos">
+        <i class="bi bi-ticket-perforated"></i>
+        <span>Eventos</span>
+      </button>
+
+      <button class="nav-item-btn" data-view="my-tickets" onclick="App.switchView('my-tickets')" aria-label="Meus Ingressos">
+        <i class="bi bi-qr-code-scan"></i>
+        <span>Ingressos</span>
+      </button>
+
+      <button class="nav-item-btn" data-view="create-event" onclick="App.switchView('create-event')" aria-label="Criar Evento">
+        <i class="bi bi-plus-circle-fill" style="color: var(--pot-orange);"></i>
+        <span>Criar</span>
+      </button>
+
+      <button class="nav-item-btn" data-view="profile" onclick="App.switchView('profile')" aria-label="Perfil">
+        <i class="bi bi-person"></i>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </div><!-- /app-container -->
+
+  <!-- =====================================================================
+       MENU UNIVERSAL DE ACESSIBILIDADE (EM TODAS AS TELAS)
+       ===================================================================== -->
+  <div id="accessibilityOverlay" onclick="AccessibilityManager.toggleDrawer(false)" 
+       style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1055;"></div>
+
+  <div id="accessibilityDrawer" class="accessibility-drawer" role="dialog" aria-modal="true" aria-label="Configurações de Acessibilidade">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--pot-border); padding-bottom: 10px;">
+      <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 8px;">
+        <i class="bi bi-universal-access text-success"></i> Acessibilidade
+      </h3>
+      <button class="btn-close" onclick="AccessibilityManager.toggleDrawer(false)" aria-label="Fechar painel"></button>
+    </div>
+
+    <div class="access-btn-grid">
+      <button class="access-control-btn" onclick="AccessibilityManager.increaseFont()">
+        <i class="bi bi-type-h1"></i> Aumentar Texto
+      </button>
+      <button class="access-control-btn" onclick="AccessibilityManager.decreaseFont()">
+        <i class="bi bi-type"></i> Diminuir Texto
+      </button>
+      <button class="access-control-btn" onclick="AccessibilityManager.toggleHighContrast()">
+        <i class="bi bi-circle-half"></i> Alto Contraste
+      </button>
+      <button class="access-control-btn" onclick="AccessibilityManager.toggleDyslexia()">
+        <i class="bi bi-fonts"></i> Modo Dislexia
+      </button>
+    </div>
+
+    <button class="btn-pot-green mt-3" onclick="AccessibilityManager.readCurrentScreen()">
+      <i class="bi bi-volume-up-fill"></i> Ler Tela em Voz Alta
+    </button>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="./assets/js/accessibility.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script>
+    App.setCategory = function(cat, el) {
+      document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      App.state.selectedCategory = cat;
+      App.renderCatalog();
+    };
+
+    App.handleRegisterStep1 = function() {
+      const name = document.getElementById('reg-name').value.trim();
+      const cpf = document.getElementById('reg-cpf').value.trim();
+      const birthDate = document.getElementById('reg-birthdate').value;
+      const email = document.getElementById('reg-email').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const cep = document.getElementById('reg-cep').value.trim();
+      const street = document.getElementById('reg-street').value;
+      const number = document.getElementById('reg-number').value.trim();
+      const complement = document.getElementById('reg-complement').value.trim();
+      const city = document.getElementById('reg-city').value;
+      const state = document.getElementById('reg-state').value;
+
+      if (!App.validateCpf(cpf)) {
+        App.showToast('CPF informado é inválido.', 'error');
+        return;
+      }
+
+      // REGRA: MAIOR DE 18 ANOS
+      const age = App.calculateAge(birthDate);
+      if (age < 18) {
+        alert('Atenção: É obrigatório ter no mínimo 18 anos completos para criar uma conta e adquirir ingressos no POTicket.');
+        App.showToast('Cadastro não permitido para menores de 18 anos.', 'error');
+        return;
+      }
+
+      if (!number) {
+        App.showToast('Por favor, informe o número do endereço.', 'warning');
+        return;
+      }
+
+      App.state.registrationData = {
+        name, cpf, birthDate, email, phone, cep, street, number, complement, city, state
+      };
+
+      document.getElementById('regSummaryName').innerText = name;
+      document.getElementById('regSummaryEmail').innerText = email;
+      document.getElementById('regSummaryAvatar').innerText = name.charAt(0).toUpperCase();
+
+      App.switchView('register-step2');
+    };
+
+    App.handleRegisterStep2 = function() {
+      const pass = document.getElementById('reg-pass').value;
+      const passConf = document.getElementById('reg-pass-confirm').value;
+
+      if (pass.length < 6) {
+        App.showToast('A senha deve ter no mínimo 6 caracteres.', 'error');
+        return;
+      }
+
+      if (pass !== passConf) {
+        App.showToast('As senhas digitadas não coincidem.', 'error');
+        return;
+      }
+
+      App.state.user = {
+        ...App.state.registrationData,
+        role: 'customer'
+      };
+      App.saveStorage();
+      App.showToast('Conta criada com sucesso! Bem-vindo(a) ao POTicket!');
+      App.switchView('home');
+    };
+
+    App.handleCreateEventForm = function() {
+      const title = document.getElementById('event-title').value.trim();
+      const category = document.getElementById('event-category').value;
+      const date = document.getElementById('event-date').value;
+      const time = document.getElementById('event-time').value;
+      const venue = document.getElementById('event-venue').value.trim();
+      const city = document.getElementById('event-city').value.trim();
+      const state = document.getElementById('event-state').value.trim();
+      const price = document.getElementById('event-price').value;
+      const qty = document.getElementById('event-qty').value;
+      const pixKey = document.getElementById('event-pix').value.trim();
+      const image = document.getElementById('event-img').value.trim();
+      const description = document.getElementById('event-desc').value.trim();
+
+      const catNames = {
+        shows: 'Shows',
+        congressos: 'Congressos',
+        corridas: 'Corridas',
+        festas: 'Festas'
+      };
+
+      App.createEvent({
+        title, category, categoryName: catNames[category] || 'Eventos',
+        date, time, venue, city, state, price, qty, pixKey, image, description
+      });
+    };
+  </script>
+
+  <!-- Botão Flutuante Universal de Ajuda & Acessibilidade (?) - Conforme Referências 1, 2 e 3 -->
+  <button class="btn-help-floating" id="btnHelpFloating" onclick="AccessibilityManager.toggleDrawer()" aria-label="Acessibilidade e Ajuda" title="Acessibilidade e Ajuda">
+    <span class="help-question-mark">?</span>
+  </button>
+</body>
+</html>
